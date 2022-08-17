@@ -6,5 +6,6 @@ const port = process.env.PORT ? Number(process.env.PORT) : 8080;
 
 dotenv.config();
 
-application.init();
-application.start(port);
+application.init().then(() => {
+  application.start(port);
+});
