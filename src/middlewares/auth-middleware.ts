@@ -12,7 +12,7 @@ export default (request: Request, response: Response, next: NextFunction) => {
     return response.status(401).json({
       mensagem: 'Usuário não autenticado'
     });
-  }
+  };
 
   const [, token] = header.split(' ');
 
@@ -25,5 +25,5 @@ export default (request: Request, response: Response, next: NextFunction) => {
     return response.status(401).json({
       mensagem: 'Usuário não autenticado'
     });
-  }
-}
+  };
+};

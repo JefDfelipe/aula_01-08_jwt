@@ -7,7 +7,7 @@ import {
   JoinColumn
 } from 'typeorm';
 import bcrypt from 'bcrypt';
-import NotesEntity from './notes-entity';
+import GradesEntity from './grades-entity';
 
 @Entity({ name: 'user' })
 export default class UserEntity extends BaseEntity {
@@ -23,31 +23,24 @@ export default class UserEntity extends BaseEntity {
   @Column()
   password: string;
 
-  @Column({name:'notes_id'})
-  notesId: number;
-  
-  @OneToMany(type=>NotesEntity,notes=>notes.user)
-  // @JoinColumn({name:'notes_id',referencedColumnName:'id'})
-  notes?:NotesEntity[]
+  @OneToMany(type => GradesEntity, grade => grade.userId)
+  grades?: GradesEntity[];
 
-  constructor(name: string, email: string, password: string, notesId: number) {
+  constructor(name: string, email: string, password: string) {
     super();
 
     this.name = name;
     this.email = email;
     this.password = password;
-    this.notesId = notesId;
   };
 
   static async createEncryptedPassword(password: string) {
     const encrypted = await bcrypt.hash(password, 10);
-
     return encrypted;
   };
 
   async comparePassword(password: string) {
     const result = await bcrypt.compare(password, this.password);
-
     return result;
   };
 };

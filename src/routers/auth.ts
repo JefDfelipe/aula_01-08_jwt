@@ -9,5 +9,5 @@ export default class AuthRouter {
     routes.post('/login', controller.login);
 
     return routes;
-  }
+  };
 };

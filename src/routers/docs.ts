@@ -7,8 +7,8 @@ export default class DocsRouter {
         const routes = Router();
 
         routes.use('/docs', swaggerUi.serve, 
-                            swaggerUi.setup(swaggerFile))
+                            swaggerUi.setup(swaggerFile));
         
         return routes;
-    }
+    };
 };

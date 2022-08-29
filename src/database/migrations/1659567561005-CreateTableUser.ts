@@ -30,19 +30,7 @@ export class CreateTableUser1659567561005 implements MigrationInterface {
           type: 'varchar',
           length: '100',
           isNullable: false
-        },
-        {
-          name: 'notes_id',
-          type: 'int',
-          isNullable: false
-        },
-      ],
-      foreignKeys:[
-        new TableForeignKey({
-          referencedColumnNames:['id'],
-          referencedTableName:'notes',
-          columnNames:['notes_id']
-        })
+        }
       ]
     }));
   };

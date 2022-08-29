@@ -3,8 +3,9 @@ const doc = require('./swagger.config');
 
 const outputFile = './src/swagger-documentation.json';
 const endPoints = [
-  './src/routers/user.ts',
-  './src/routers/auth.ts'
+  './src/routers/user-routes.ts',
+  './src/routers/auth.ts',
+  './src/routers/grades-routes.ts'
 ];
 
 swaggerAutogen(outputFile, endPoints, doc);

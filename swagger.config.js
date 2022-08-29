@@ -1,8 +1,9 @@
-const { User } = require('./documentation/User');
+const { User } = require('./documentation/User-doc');
+const { Grade } = require('./documentation/Grade-doc');
 
 module.exports = {
   info: {
-    version: '1.0.0',
+    version: '1.0.1',
     title: 'API Exemplo JWT + Swagger',
     description: 'Descrição da API...'
   },
@@ -20,8 +21,12 @@ module.exports = {
   },
   definitions: {
     User,
+    Grade,
     UserList: [
       { $ref: '#/definitions/User' }
+    ],
+    GradeList: [
+      { $ref: '#/definitions/Grade' }
     ]
   }
 };

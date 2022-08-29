@@ -1,10 +1,10 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm";
+import { MigrationInterface, QueryRunner, Table, TableForeignKey } from "typeorm";
 
-export class CreateTableNotes1660604369058 implements MigrationInterface {
+export class CreateTableGrades1660604369058 implements MigrationInterface {
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(new Table({
-      name: 'notes',
+      name: 'user_grade',
       columns: [
         {
           name: 'id',
@@ -14,9 +14,8 @@ export class CreateTableNotes1660604369058 implements MigrationInterface {
           isNullable: false
         },
         {
-          name: 'description',
-          type: 'varchar',
-          length: '100',
+          name: 'user_id',
+          type: 'int',
           isNullable: false
         },
         {
@@ -24,6 +23,13 @@ export class CreateTableNotes1660604369058 implements MigrationInterface {
           type: 'int',
           isNullable: false
         }
+      ],
+      foreignKeys:[
+        new TableForeignKey({
+          referencedTableName:'user',
+          columnNames:['user_id'],
+          referencedColumnNames:['id']
+        })
       ]
     }));
   };

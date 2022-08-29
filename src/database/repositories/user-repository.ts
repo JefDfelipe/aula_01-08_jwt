@@ -5,13 +5,13 @@ export default class UserRepository {
     const users = await UserEntity.find();
 
     return users;
-  }
+  };
 
   async findOne(userId: number) {
     const user = await UserEntity.findOne(userId);
 
     return user;
-  }
+  };
 
   async findByEmail(email: string) {
     const user = await UserEntity.findOne({
@@ -22,20 +22,19 @@ export default class UserRepository {
 
 
     return user;
-  }
+  };
 
-  async create(name: string, email: string, password: string, notesId: number) {
+  async create(name: string, email: string, password: string) {
     const user = new UserEntity(
       name,
       email,
-      await UserEntity.createEncryptedPassword(password),
-      notesId
+      await UserEntity.createEncryptedPassword(password)
     );
 
     await user.save();
 
     return user;
-  }
+  };
 
   async update(userId: number, name: string, email: string, password: string) {
     const user = await UserEntity.findOne(userId);
@@ -46,15 +45,15 @@ export default class UserRepository {
 
       if (password) {
         user.password = await UserEntity.createEncryptedPassword(password);
-      }
+      };
 
-      await user.save();
-    }
+      await user?.save();
+    };
 
     return user;
-  }
+  };
 
   async delete(userId: number) {
     await UserEntity.delete(userId);
-  }
-}
+  };
+};
